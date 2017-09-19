@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<aop:aspectj-autoproxy/>
+	<context:component-scan base-package="com.pxt" />
+
 	<bean id="user" class="com.pxt.pojo.user.User">
 		<property name="userid" value="302312" />
 		<property name="username" value="pxt" />
 	</bean>
 	
-	<bean id="userDao" class="com.pxt.dao.user.UserDao" />
-
-	<bean id="userService" class="com.pxt.service.user.UserService">
-		<property name="userDao" ref="userDao" />
-	</bean>
-
+	<!-- 装配AOP
+	<bean id="myAspect" class="com.pxt.aop.UserLog" />
+    
+    <aop:config>  
+        <aop:aspect id="aspect" ref="myAspect">  
+            <aop:pointcut id="pointUserMgr" expression="execution(public * save(..))"/>  
+            <aop:before method="before"  pointcut-ref="pointUserMgr"/>  
+        </aop:aspect>  
+    </aop:config>  -->
 </beans>

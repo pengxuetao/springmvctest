@@ -1,10 +1,17 @@
 package com.pxt.pojo.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USERTEST")
 public class User {
 
 	private String userid;
 	private String username;
 	
+	@Id
 	public String getUserid() {
 		return userid;
 	}

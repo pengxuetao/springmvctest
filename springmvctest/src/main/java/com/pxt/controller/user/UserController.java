@@ -1,5 +1,6 @@
 package com.pxt.controller.user;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
@@ -15,7 +16,9 @@ import com.pxt.service.user.UserService;
 @Controller
 public class UserController 
 {	
+	@Resource(name="userService")
 	private UserService userService;
+	
 	private ApplicationContext applicationContext;
 	
 	@RequestMapping(value="/add")
@@ -27,6 +30,13 @@ public class UserController
 		User user = (User)applicationContext.getBean("user");
 		userService.addUser(user);
 		return "success add "+user.getUserid();
+	}
+	
+	public static void main(String[] args) {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("conf/bean.xml");
+		UserService userService = (UserService)applicationContext.getBean("userService");
+		User user = (User)applicationContext.getBean("user");
+		userService.addUser(user);
 	}
 	
 }
