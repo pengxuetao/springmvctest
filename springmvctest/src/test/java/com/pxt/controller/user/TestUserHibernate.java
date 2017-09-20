@@ -1,5 +1,6 @@
 package com.pxt.controller.user;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,6 +15,8 @@ import junit.framework.TestCase;
 public class TestUserHibernate extends TestCase {
 	
 	public void testAdd() {
+		String log4jPath=System.getProperty("user.dir")+"\\src\\main\\resources\\conf\\log4j.properties";
+		PropertyConfigurator.configure(log4jPath);
 		Configuration cfg = new Configuration();
 		cfg.configure("conf/hibernate.cfg.xml");
 
